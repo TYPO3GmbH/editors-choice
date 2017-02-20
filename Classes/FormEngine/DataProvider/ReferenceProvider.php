@@ -16,29 +16,17 @@ namespace T3G\AgencyPack\EditorsChoice\FormEngine\DataProvider;
  * The TYPO3 project - inspiring people to share!
  */
 
-use T3G\AgencyPack\EditorsChoice\Repository\ReferenceRepository;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Imaging\Icon;
-use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Lang\LanguageService;
 
 
 /**
- * Class ReferenceProvider
  * FormEngine Data Provider adding reference data as 'customData'
- *
- * @package T3G\AgencyPack\EditorsChoice\FormEngine\DataProvider
  */
 class ReferenceProvider implements FormDataProviderInterface
 {
-    /**
-     * @var IconFactory
-     */
-    protected $iconFactory;
-
     /**
      * Available system languages
      *
@@ -54,7 +42,6 @@ class ReferenceProvider implements FormDataProviderInterface
      */
     public function addData(array $result): array
     {
-        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         $this->systemLanguages = $result['systemLanguageRows'];
         if ($result['command'] !== 'edit') {
             return $result;
@@ -69,7 +56,7 @@ class ReferenceProvider implements FormDataProviderInterface
             default:
                 $references = [];
         }
-        $result['customData']['EditorsChoice']['References'] = $references;
+        $result['customData']['editorsChoice']['references'] = $references;
         return $result;
     }
 
@@ -81,8 +68,27 @@ class ReferenceProvider implements FormDataProviderInterface
      */
     protected function getContentReferences(int $uid): array
     {
-        $referenceRepository = GeneralUtility::makeInstance(ReferenceRepository::class);
-        $rows = $referenceRepository->getContentReferences($uid);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_refindex');
+        $rows = $queryBuilder
+            ->select('*')
+            ->from('sys_refindex')
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'ref_table',
+                    $queryBuilder->createNamedParameter('tt_content', \PDO::PARAM_STR)
+                ),
+                $queryBuilder->expr()->eq(
+                    'ref_uid',
+                    $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
+                ),
+                $queryBuilder->expr()->eq(
+                    'deleted',
+                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                )
+            )
+            ->execute()
+            ->fetchAll();
 
         $refLines = [];
         foreach ($rows as $row) {
@@ -112,8 +118,32 @@ class ReferenceProvider implements FormDataProviderInterface
      */
     protected function getPageReferences(int $uid): array
     {
-        $referenceRepository = GeneralUtility::makeInstance(ReferenceRepository::class);
-        $rows = $referenceRepository->getPageReferences($uid);
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('sys_refindex');
+        $rows = $queryBuilder
+            ->select('*')
+            ->from('sys_refindex')
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'ref_table',
+                    $queryBuilder->createNamedParameter('pages', \PDO::PARAM_STR)
+                ),
+                $queryBuilder->expr()->eq(
+                    'tablename',
+                    $queryBuilder->createNamedParameter('pages', \PDO::PARAM_STR)
+                ),
+                $queryBuilder->expr()->eq(
+                    'ref_uid',
+                    $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
+                ),
+                $queryBuilder->expr()->eq(
+                    'deleted',
+                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                )
+            )
+            ->execute()
+            ->fetchAll();
+
         $refLines = [];
         foreach ($rows as $row) {
             $record = BackendUtility::getRecord($row['tablename'], $row['recuid']);
@@ -128,27 +158,6 @@ class ReferenceProvider implements FormDataProviderInterface
             }
         }
         return $refLines;
-    }
-
-
-    /**
-     * Returns LanguageService
-     *
-     * @return \TYPO3\CMS\Lang\LanguageService
-     */
-    protected function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
-    }
-
-    /**
-     * Returns the current BE user.
-     *
-     * @return \TYPO3\CMS\Core\Authentication\BackendUserAuthentication
-     */
-    protected function getBackendUser(): BackendUserAuthentication
-    {
-        return $GLOBALS['BE_USER'];
     }
 
     /**
@@ -169,11 +178,9 @@ class ReferenceProvider implements FormDataProviderInterface
         ];
         $url = BackendUtility::getModuleUrl('record_edit', $urlParameters);
         $line['url'] = $url;
-        $line['icon'] = $this->iconFactory->getIconForRecord($row['tablename'], $record, Icon::SIZE_SMALL)->render();
         $line['row'] = $row;
         $line['record'] = $record;
         $line['recordTitle'] = BackendUtility::getRecordTitle($row['tablename'], $record, true);
-        $line['title'] = $this->getLanguageService()->sL($GLOBALS['TCA'][$row['tablename']]['ctrl']['title']);
         return $line;
     }
 }

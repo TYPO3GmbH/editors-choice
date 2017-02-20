@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace T3G\AgencyPack\EditorsChoice\FormEngine;
+namespace T3G\AgencyPack\EditorsChoice\FormEngine\FieldWizard;
 
 /*
  * This file is part of the TYPO3 CMS project.
@@ -21,9 +21,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
- * Class ReferencesToThisRecordWizard
- *
- * @package T3G\TemplateTypo3com\FormEngine
+ * Render a table showing and linking elements that reference this record
+ * or are translations of this record.
  */
 class ReferencesToThisRecordWizard extends AbstractNode
 {
@@ -36,7 +35,7 @@ class ReferencesToThisRecordWizard extends AbstractNode
     public function render(): array
     {
         $result = $this->initializeResultArray();
-        $references = $this->data['customData']['EditorsChoice']['References'];
+        $references = $this->data['customData']['editorsChoice']['references'];
         if (count($references) > 0) {
             $result['html'] = $this->getHtml($references);
         }
@@ -57,5 +56,4 @@ class ReferencesToThisRecordWizard extends AbstractNode
         $view->assign('refLines', $references);
         return $view->render();
     }
-
 }

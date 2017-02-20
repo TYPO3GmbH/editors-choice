@@ -25,7 +25,7 @@
                                     </thead>
                                     <tbody>
                                     <f:for each="{table}" as="refLine">
-                                        <f:render section="refLineRow" arguments="{line: refLine}"/>
+                                        <f:render section="refLineRow" arguments="{line: refLine, systemLanguageRows: systemLanguageRows}"/>
                                     </f:for>
                                     </tbody>
                                 </table>
@@ -40,7 +40,11 @@
         <tr>
             <f:if condition="{line.record}">
                 <f:then>
-                    <td class="col-icon"><a href="{line.url}" title="id={line.record.uid}">{line.icon -> f:format.raw()}</a></td>
+                    <td class="col-icon">
+                        <a href="{line.url}" title="id={line.record.uid}">
+                            <core:iconForRecord table="{line.row.tablename}" row="{line.row}" />
+                        </a>
+                    </td>
                     <td class="col-title"><a href="{line.url}" title="id={line.record.uid}">{line.recordTitle -> f:format.raw()}
                         <f:if condition="{line.language}">
                             [{line.language}]

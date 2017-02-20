@@ -1,7 +1,8 @@
 Editors Choice
 ================
 
-This extension is meant to provide improvements for TYPO3. It is used as an incubator for possible future TYPO3 Core Features.
+This extension is meant to provide improvements for TYPO3.
+It is used as an incubator of possible future TYPO3 Core Features.
 
 Features
 --------
