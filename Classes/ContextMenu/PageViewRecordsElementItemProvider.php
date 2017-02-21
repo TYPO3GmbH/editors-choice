@@ -18,7 +18,8 @@ use TYPO3\CMS\Backend\ContextMenu\ItemProviders\AbstractProvider;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * An item provider to add the "dereference" item to records content element in page module.
+ * A context menu item provider to add the "dereference" item to
+ * records content element in page module.
  */
 class PageViewRecordsElementItemProvider extends AbstractProvider
 {
@@ -28,7 +29,7 @@ class PageViewRecordsElementItemProvider extends AbstractProvider
     protected $itemsConfiguration = [
         'dereference' => [
             'type' => 'item',
-            'label' => 'De-reference',
+            'label' => 'LLL:EXT:editors_choice/Resources/Private/Language/locallang_references.xlf:dereference',
             'iconIdentifier' => 'actions-merge',
             'callbackAction' => 'deReference'
         ]
