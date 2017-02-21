@@ -23,13 +23,5 @@
         "psr-4": {
             "T3G\\AgencyPack\\EditorsChoice\\": "Classes/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "T3G\\AgencyPack\\EditorsChoice\\": "Tests/"
-        }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "*"
     }
 }
