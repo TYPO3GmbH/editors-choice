@@ -18,4 +18,12 @@ call_user_func(function () {
         'class' => \T3G\AgencyPack\EditorsChoice\FormEngine\FieldWizard\ReferencesToThisRecordWizard::class,
     ];
 
+    if (!is_array($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'])) {
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'] = [];
+    }
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][] =
+        \T3G\AgencyPack\EditorsChoice\Hook\PageViewRecordsElement::class;
+
+    $GLOBALS['TYPO3_CONF_VARS']['BE']['ContextMenu']['ItemProviders'][1487692223] =
+        \T3G\AgencyPack\EditorsChoice\ContextMenu\PageViewRecordsElementItemProvider::class;
 });
