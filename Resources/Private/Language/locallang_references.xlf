@@ -18,6 +18,9 @@
 			<trans-unit id="referenced.shortcuts">
 				<source>Shortcuts pointing (directly) to this page</source>
 			</trans-unit>
+			<trans-unit id="dereference">
+			    <source>Detach</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
