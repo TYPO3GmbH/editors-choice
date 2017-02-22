@@ -33,7 +33,7 @@ class DereferenceElementAjaxController
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function deReferenceAction(ServerRequestInterface $request, ResponseInterface $response)
+    public function dereferenceAction(ServerRequestInterface $request, ResponseInterface $response)
     {
         $queryParameters = $request->getParsedBody();
         $tableName = $queryParameters['tableName'];
