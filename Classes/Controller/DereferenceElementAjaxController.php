@@ -55,7 +55,8 @@ class DereferenceElementAjaxController
         $newReferenceElements = [];
         foreach ($currentReferencedElementsArray as $currentReferencedElement) {
             $split = BackendUtility::splitTable_Uid($currentReferencedElement);
-            if ($split[0] === 'tt_content' && (int)$split[1] === $contentElementUid) {
+            $tableName = empty($split[0]) ? 'tt_content' : $split[0];
+            if ($tableName === 'tt_content' && (int)$split[1] === $contentElementUid) {
                 $foundContentElementInReferenceElement = true;
             } else {
                 $newReferenceElements[] = $currentReferencedElement;
