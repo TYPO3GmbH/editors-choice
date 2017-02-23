@@ -21,6 +21,9 @@
 			<trans-unit id="dereference">
 			    <source>Detach</source>
 			</trans-unit>
+			<trans-unit id="tt_content_enable_reference">
+			    <source>Allow as insert record element</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
