@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-06-23T11:36:30Z">
+		<header>
+			<authorName>TYPO3</authorName>
+			<authorEmail>info@typo3.com</authorEmail>
+		</header>
+		<body>
+			<trans-unit id="referenced.content">
+				<source>Content referencing this record</source>
+			</trans-unit>
+			<trans-unit id="referenced.translation">
+				<source>Translations of this record</source>
+			</trans-unit>
+			<trans-unit id="referenced.content_from_pid">
+				<source>Pages showing content from this page</source>
+			</trans-unit>
+			<trans-unit id="referenced.shortcuts">
+				<source>Shortcuts pointing (directly) to this page</source>
+			</trans-unit>
+			<trans-unit id="dereference">
+			    <source>Detach</source>
+			</trans-unit>
+			<trans-unit id="tt_content_enable_reference">
+			    <source>Allow as insert record element</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
