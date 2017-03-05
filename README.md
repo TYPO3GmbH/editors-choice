@@ -33,3 +33,6 @@ Note if multiple different records types additonal to tt_content are configured 
 (eg. records from ext:news), the DB field and TCA configuration "enable_reference" must be added to those tables too,
  otherwise an SQL error is raised and the suggest wizards shows no results.
  
+### Open Issues
+
+- [ ] Make flag for referencing optional
