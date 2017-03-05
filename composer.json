@@ -10,6 +10,10 @@
             "url": "https://composer.typo3.org/"
         }
     },
+    "support": {
+        "issues": "https://jira.typo3.com/servicedesk/customer/portal/3/group/41",
+        "source": "https://bitbucket.typo3.com/ext/editors-choice.git"
+    },
     "authors": [
         {
             "name": "TYPO3 GmbH",
