@@ -35,8 +35,8 @@ class ReferencesToThisRecordWizard extends AbstractNode
     public function render(): array
     {
         $result = $this->initializeResultArray();
-        $references = $this->data['customData']['editorsChoice']['references'];
-        if (count($references) > 0) {
+        $references = $this->data['customData']['editorsChoice']['references'] ?? [];
+        if (\count($references) > 0) {
             $result['html'] = $this->getHtml($references);
         }
         return $result;
