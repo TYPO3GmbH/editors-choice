@@ -17,6 +17,7 @@ namespace T3G\AgencyPack\EditorsChoice\FormEngine\DataProvider;
  */
 
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -176,7 +177,8 @@ class ReferenceProvider implements FormDataProviderInterface
             ],
             'returnUrl' => GeneralUtility::getIndpEnv('REQUEST_URI'),
         ];
-        $url = BackendUtility::getModuleUrl('record_edit', $urlParameters);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $url = $uriBuilder->buildUriFromRoute('record_edit', $urlParameters);
         $line['url'] = $url;
         $line['row'] = $row;
         $line['record'] = $record;
