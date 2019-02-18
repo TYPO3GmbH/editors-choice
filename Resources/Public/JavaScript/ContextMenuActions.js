@@ -17,7 +17,7 @@
  * JavaScript to handle "dereference" click in context menu of reference content elements in page module.
  * @exports T3G/AgencyPack/ContextMenuActions
  */
-define(function () {
+define(['jquery'], function ($) {
     'use strict';
 
     /**
