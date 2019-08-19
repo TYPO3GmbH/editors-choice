@@ -19,8 +19,11 @@ call_user_func(function () {
             'label' => 'LLL:EXT:editors_choice/Resources/Private/Language/locallang_references.xlf:tt_content_enable_reference',
             'config' => [
                 'type' => 'check',
+                // TODO: Enable once we drop support for v8
+                // 'renderType' => 'checkboxToggle',
                 'items' => [
                     '1' => [
+                        // TODO: Use LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.enabled once we drop support for v8
                         '0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
                     ],
                 ],

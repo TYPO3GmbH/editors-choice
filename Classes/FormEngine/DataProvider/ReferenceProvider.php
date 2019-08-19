@@ -17,6 +17,7 @@ namespace T3G\AgencyPack\EditorsChoice\FormEngine\DataProvider;
  */
 
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -76,7 +77,7 @@ class ReferenceProvider implements FormDataProviderInterface
             ->where(
                 $queryBuilder->expr()->eq(
                     'ref_table',
-                    $queryBuilder->createNamedParameter('tt_content', \PDO::PARAM_STR)
+                    $queryBuilder->createNamedParameter('tt_content')
                 ),
                 $queryBuilder->expr()->eq(
                     'ref_uid',
@@ -99,7 +100,7 @@ class ReferenceProvider implements FormDataProviderInterface
             if ($record) {
                 $line = $this->transformRecordToLine($row, $record);
 
-                if ($row['field'] == 'l18n_parent') {
+                if ($row['field'] === 'l18n_parent') {
                     $line['language'] = $this->systemLanguages[$record['sys_language_uid']]['title'];
                     $refLines['translation'][] = $line;
                 } else {
@@ -126,11 +127,11 @@ class ReferenceProvider implements FormDataProviderInterface
             ->where(
                 $queryBuilder->expr()->eq(
                     'ref_table',
-                    $queryBuilder->createNamedParameter('pages', \PDO::PARAM_STR)
+                    $queryBuilder->createNamedParameter('pages')
                 ),
                 $queryBuilder->expr()->eq(
                     'tablename',
-                    $queryBuilder->createNamedParameter('pages', \PDO::PARAM_STR)
+                    $queryBuilder->createNamedParameter('pages')
                 ),
                 $queryBuilder->expr()->eq(
                     'ref_uid',
@@ -150,9 +151,9 @@ class ReferenceProvider implements FormDataProviderInterface
             if ($record) {
                 $line = $this->transformRecordToLine($row, $record);
 
-                if ($row['field'] == 'shortcut') {
+                if ($row['field'] === 'shortcut') {
                     $refLines['shortcuts'][] = $line;
-                } elseif ($row['field'] == 'content_from_pid') {
+                } elseif ($row['field'] === 'content_from_pid') {
                     $refLines['content_from_pid'][] = $line;
                 }
             }
@@ -176,7 +177,8 @@ class ReferenceProvider implements FormDataProviderInterface
             ],
             'returnUrl' => GeneralUtility::getIndpEnv('REQUEST_URI'),
         ];
-        $url = BackendUtility::getModuleUrl('record_edit', $urlParameters);
+        $uriBuilder = GeneralUtility::makeInstance(UriBuilder::class);
+        $url = $uriBuilder->buildUriFromRoute('record_edit', $urlParameters);
         $line['url'] = $url;
         $line['row'] = $row;
         $line['record'] = $record;

@@ -8,7 +8,7 @@ $EM_CONF[$_EXTKEY] = array(
     'category' => 'extension',
     'constraints' => array(
         'depends' => array(
-            'typo3' => '8.6.0-8.99.99'
+            'typo3' => '8.6.0-9.5.99'
         ),
         'conflicts' => array(),
     ),
@@ -21,8 +21,8 @@ $EM_CONF[$_EXTKEY] = array(
     'uploadfolder' => 0,
     'createDirs' => '',
     'clearCacheOnLoad' => 1,
-    'author' => 'Susanne Moog',
-    'author_email' => 'susanne.moog@typo3.com',
+    'author' => 'TYPO3 GmbH',
+    'author_email' => 'info@typo3.com',
     'author_company' => 'TYPO3 GmbH',
-    'version' => '1.0.0',
+    'version' => '2.0.0',
 );

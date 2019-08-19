@@ -12,17 +12,14 @@
  */
 
 /**
- * Module: T3G/AgencyPack/ContextMenuActions
+ * Module: TYPO3/CMS/EditorsChoice/ContextMenuActions
  *
  * JavaScript to handle "dereference" click in context menu of reference content elements in page module.
- * @exports T3G/AgencyPack/ContextMenuActions
+ * @exports TYPO3/CMS/EditorsChoice/ContextMenuActions
  */
 define(function () {
     'use strict';
 
-    /**
-     * @exports T3G/AgencyPack/ContextMenuActions
-     */
     var ContextMenuActions = {};
 
     /**
