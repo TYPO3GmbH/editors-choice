@@ -2,6 +2,7 @@
     "name": "t3g/editors-choice",
     "description": "Improvements for TYPO3 Editors",
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "type": "typo3-cms-extension",
     "license": "GPL-2.0+",
     "repositories": {
@@ -11,8 +12,8 @@
         }
     },
     "support": {
-        "issues": "https://jira.typo3.com/servicedesk/customer/portal/3/group/41",
-        "source": "https://bitbucket.typo3.com/ext/editors-choice.git"
+        "issues": "https://github.com/TYPO3GmbH/editors-choice/issues",
+        "source": "https://github.com/TYPO3GmbH/editors-choice.git"
     },
     "authors": [
         {
@@ -21,6 +22,27 @@
             "homepage": "https://typo3.com/"
         }
     ],
+    "config": {
+        "sort-packages": true,
+        "discard-changes": true,
+        "vendor-dir": ".build/vendor",
+        "bin-dir": ".build/bin"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "editors_choice",
+            "app-dir": ".build",
+            "web-dir": ".build/public"
+        }
+    },
+    "scripts": {
+        "t3g:phplint": [
+            "phplint"
+        ],
+        "t3g:cgl": [
+            "php-cs-fixer fix -v --dry-run --using-cache false --diff --diff-format=udiff"
+        ]
+    },
     "require": {
         "typo3/cms-backend": "^8.7 || ^9.5",
         "typo3/cms-core": "^8.7 || ^9.5",
@@ -30,5 +52,10 @@
         "psr-4": {
             "T3G\\AgencyPack\\EditorsChoice\\": "Classes/"
         }
+    },
+    "require-dev": {
+        "bk2k/extension-helper": "^1.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "overtrue/phplint": "^1.1"
     }
 }
