@@ -24,5 +24,5 @@ $EM_CONF[$_EXTKEY] = array(
     'author' => 'TYPO3 GmbH',
     'author_email' => 'info@typo3.com',
     'author_company' => 'TYPO3 GmbH',
-    'version' => '2.0.0',
+    'version' => '2.0.1',
 );
