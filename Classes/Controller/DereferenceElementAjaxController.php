@@ -14,6 +14,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
+use TYPO3\CMS\Core\Http\Response;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -28,10 +29,13 @@ class DereferenceElementAjaxController
      * @param ResponseInterface $response
      * @return ResponseInterface
      */
-    public function dereferenceAction(ServerRequestInterface $request, ResponseInterface $response)
+    public function dereferenceAction(ServerRequestInterface $request, ResponseInterface $response = null)
     {
         $queryParameters = $request->getParsedBody();
         $tableName = $queryParameters['tableName'];
+        if ($response === null) {
+            $response = GeneralUtility::makeInstance(Response::class);
+        }
 
         if ($tableName !== 'tt_content') {
             $response->getBody()->write(json_encode([ 'success' => false ]));
