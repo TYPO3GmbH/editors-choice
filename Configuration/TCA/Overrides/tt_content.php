@@ -23,8 +23,7 @@ call_user_func(function () {
                 // 'renderType' => 'checkboxToggle',
                 'items' => [
                     '1' => [
-                        // TODO: Use LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.enabled once we drop support for v8
-                        '0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
+                        '0' => 'LLL:EXT:editors_choice/Resources/Private/Language/locallang_references.xlf:labels.enabled'
                     ],
                 ],
             ],

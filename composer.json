@@ -22,6 +22,42 @@
             "homepage": "https://typo3.com/"
         }
     ],
+    "require": {
+        "typo3/cms-backend": "^8.7 || ^9.5 || ^10.4",
+        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4",
+        "typo3/cms-fluid": "^8.7 || ^9.5 || ^10.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "T3G\\AgencyPack\\EditorsChoice\\": "Classes/"
+        }
+    },
+    "require-dev": {
+        "bk2k/extension-helper": "^1.0",
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "roave/security-advisories": "dev-master",
+        "typo3/testing-framework": "^2 || ^4.9 || ^5.0 || ^6.2",
+        "bk2k/bootstrap-package": "*",
+        "overtrue/phplint": "^1.1"
+    },
+
+    "scripts": {
+        "t3g:test:php:lint": [
+            "phplint"
+        ],
+        "t3g:test:php:unit": [
+            "phpunit -c Build/UnitTests.xml"
+        ],
+        "t3g:test": [
+            "@t3g:test:php:lint", "@t3g:test:php:unit"
+        ],
+        "t3g:cgl": [
+            "php-cs-fixer --diff -v fix"
+        ],
+        "post-autoload-dump": [
+            "mkdir -p .build/web/typo3conf/ext/", "[ -L .build/web/typo3conf/ext/editors_choice ] || ln -snvf ../../../../. .build/web/typo3conf/ext/editors_choice"
+        ]
+    },
     "config": {
         "sort-packages": true,
         "discard-changes": true,
@@ -34,28 +70,5 @@
             "app-dir": ".build",
             "web-dir": ".build/public"
         }
-    },
-    "scripts": {
-        "t3g:phplint": [
-            "phplint"
-        ],
-        "t3g:cgl": [
-            "php-cs-fixer fix -v --dry-run --using-cache false --diff --diff-format=udiff"
-        ]
-    },
-    "require": {
-        "typo3/cms-backend": "^8.7 || ^9.5",
-        "typo3/cms-core": "^8.7 || ^9.5",
-        "typo3/cms-fluid": "^8.7 || ^9.5"
-    },
-    "autoload": {
-        "psr-4": {
-            "T3G\\AgencyPack\\EditorsChoice\\": "Classes/"
-        }
-    },
-    "require-dev": {
-        "bk2k/extension-helper": "^1.0",
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "overtrue/phplint": "^1.1"
     }
 }
