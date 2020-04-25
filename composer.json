@@ -5,12 +5,12 @@
     "prefer-stable": true,
     "type": "typo3-cms-extension",
     "license": "GPL-2.0+",
-    "repositories": {
-        "0": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://composer.typo3.org/"
         }
-    },
+    ],
     "support": {
         "issues": "https://github.com/TYPO3GmbH/editors-choice/issues",
         "source": "https://github.com/TYPO3GmbH/editors-choice.git"
@@ -69,6 +69,9 @@
             "extension-key": "editors_choice",
             "app-dir": ".build",
             "web-dir": ".build/public"
+        },
+        "branch-alias": {
+            "dev-master": "2.0.x-dev"
         }
     }
 }
