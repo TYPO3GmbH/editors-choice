@@ -18,8 +18,7 @@
                                 <tr>
                                     <th class="col-icon"></th>
                                     <th class="col-title">
-                                        <f:comment><!-- TODO: Update label to use LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:show_item.php.title once we drop support for v8 --></f:comment>
-                                        <f:translate key="LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:show_item.php.title"/>
+                                        <f:translate key="LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:show_item.php.title" default="{f:translate(key: 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:show_item.php.title')}" />
                                     </th>
                                 </tr>
                                 </thead>
@@ -54,8 +53,7 @@
                 <f:else>
                     <td class="col-icon"></td>
                     <td class="col-title">
-                        <f:comment><!-- TODO: Update label to use LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:show_item.php.missing_record once we drop support for v8 --></f:comment>
-                        <f:translate key="LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:show_item.php.missing_record"/>
+                        <f:translate key="LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:show_item.php.missing_record" default="{f:translate(key: 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:show_item.php.missing_record')}" />
                         (uid={line.row.recuid}
                     </td>
                 </f:else>
