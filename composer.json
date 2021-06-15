@@ -23,9 +23,9 @@
         }
     ],
     "require": {
-        "typo3/cms-backend": "^8.7 || ^9.5 || ^10.4 || 11.2.x-dev",
-        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4 || 11.2.x-dev",
-        "typo3/cms-fluid": "^8.7 || ^9.5 || ^10.4 || 11.2.x-dev"
+        "typo3/cms-backend": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev",
+        "typo3/cms-core": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev",
+        "typo3/cms-fluid": "^8.7 || ^9.5 || ^10.4 || 11.*.*@dev"
     },
     "autoload": {
         "psr-4": {
