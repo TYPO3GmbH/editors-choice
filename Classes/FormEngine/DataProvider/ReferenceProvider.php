@@ -125,10 +125,6 @@ class ReferenceProvider implements FormDataProviderInterface
                 $queryBuilder->expr()->eq(
                     'ref_uid',
                     $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)
-                ),
-                $queryBuilder->expr()->eq(
-                    'deleted',
-                    $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
                 )
             )
             ->execute()
